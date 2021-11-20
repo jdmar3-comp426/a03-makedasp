@@ -10,7 +10,7 @@
  */
 export function sumToString(a, b) {
     let sum = a + b;
-    return a + ' + ' + b + ' ' + sum;
+    return a + ' + ' + b + ' = ' + sum;
 }
 
 
@@ -50,7 +50,7 @@ export function maxAndMin(numbers) {
             maxNum = i;
         }
     }
-    return {min: minNum, max: maxNum}
+    return {max: maxNum, min: minNum}
 }
 
 /**
