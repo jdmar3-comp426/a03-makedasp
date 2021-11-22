@@ -10,8 +10,8 @@ import {variance} from "./data/stats_helpers.js";
  */
 export function getSum(array) {
     let sum = 0;
-    for(let x in array){
-        sum += parseInt(x);
+    for(let x = 0; x < array.length; x++){
+        sum += parseInt(array[x]);
     }
     return sum;
 }
@@ -27,10 +27,10 @@ export function getSum(array) {
  * console.log(getMedian(array)); // 4.5
  */
 export function getMedian(array) {
-    let median;
-    let half = array.length / 2;
+    let median = 0;
+    let half = array.length / 2.0;
     if(array.length % 2){
-        median = array[half];
+        median = parseInt(array[half]);
     } else{
         let halfFloor = Math.floor(half);
         median = (array[half] + array[half+1]) / 2.0;
@@ -63,11 +63,11 @@ export function getStatistics(array) {
     let max = minMax.max;
     let median = getMedian(array);
     let sum = getSum(array);
-    let vrnce = variance(array, mean);
     length = array.length;
     let mean = sum / length;
+    let vrnce = variance(array, mean);
     let stdDev = Math.sqrt(vrnce);
 
-    return {min: 'min', median: 'median', max: 'max'};
+    return {min: min, median: median, max: max, variance: vrnce, mean: mean, length: length, sum: sum, standard_deviation: stdDev};
 }
 
