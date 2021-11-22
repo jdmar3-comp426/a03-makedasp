@@ -28,12 +28,14 @@ export function getSum(array) {
  */
 export function getMedian(array) {
     let median = 0;
-    let half = array.length / 2.0;
+    array.sort(function(a,b){
+        return a-b;
+    })
+    let half = Math.floor(array.length / 2);
     if(array.length % 2){
-        median = parseInt(array[half]);
+        median = array[half];
     } else{
-        let halfFloor = Math.floor(half);
-        median = (array[half] + array[half+1]) / 2.0;
+        median = (array[half] + array[half-1]) / 2.0;
     }
     return median;
 }
@@ -63,7 +65,7 @@ export function getStatistics(array) {
     let max = minMax.max;
     let median = getMedian(array);
     let sum = getSum(array);
-    length = array.length;
+    let length = array.length;
     let mean = sum / length;
     let vrnce = variance(array, mean);
     let stdDev = Math.sqrt(vrnce);
