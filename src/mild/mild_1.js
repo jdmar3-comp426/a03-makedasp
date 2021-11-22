@@ -44,15 +44,13 @@ export function maxAndMin(numbers) {
     let maxNum = numbers[0];
     for(let i = 1; i < numbers.length; i++){
         if(numbers[i] < minNum){
-            minNum = numbers[i];
+            minNum = parseInt(numbers[i]);
         }
         if(numbers[i] > maxNum){
-            maxNum = numbers[i];
+            maxNum = parseInt(numbers[i]);
         }
     }
-    sMax = maxNum.toString();
-    sMin = minNum.toString();
-    return {max: sMax, min: sMin}
+    return {max: maxNum, min: minNum};
 }
 
 /**
