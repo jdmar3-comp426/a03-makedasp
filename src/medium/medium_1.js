@@ -11,7 +11,7 @@ import {variance} from "./data/stats_helpers.js";
 export function getSum(array) {
     let sum = 0;
     for(let x in array){
-        sum += x;
+        sum += parseInt(x);
     }
     return sum;
 }
@@ -28,10 +28,11 @@ export function getSum(array) {
  */
 export function getMedian(array) {
     let median;
-    let half = Math.floor(array.length / 2);
+    let half = array.length / 2;
     if(array.length % 2){
         median = array[half];
     } else{
+        let halfFloor = Math.floor(half);
         median = (array[half] + array[half+1]) / 2.0;
     }
     return median;
@@ -62,10 +63,10 @@ export function getStatistics(array) {
     let max = minMax.max;
     let median = getMedian(array);
     let sum = getSum(array);
-    let variance = variance(array, mean);
+    let vrnce = variance(array, mean);
     length = array.length;
     let mean = sum / length;
-    let stdDev = Math.sqrt(variance);
+    let stdDev = Math.sqrt(vrnce);
 
     return {min: 'min', median: 'median', max: 'max'};
 }
