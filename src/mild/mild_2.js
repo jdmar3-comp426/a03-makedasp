@@ -102,7 +102,7 @@ export function removeKeyNonDestructive(object, key) {
  */
 export function removeKeys(object, keyList) {
    let obj1 = Object.assign({}, object);
-   for(x in keyList){
+   for(let x in keyList){
       delete obj1[x];
    }
    return obj1;

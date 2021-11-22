@@ -50,7 +50,9 @@ export function maxAndMin(numbers) {
             maxNum = numbers[i];
         }
     }
-    return {max: maxNum.toString, min: minNum.toString}
+    sMax = maxNum.toString();
+    sMin = minNum.toString();
+    return {max: sMax, min: sMin}
 }
 
 /**
