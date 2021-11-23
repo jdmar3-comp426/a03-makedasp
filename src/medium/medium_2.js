@@ -20,7 +20,7 @@ export function findAvgMpg(mpgs){
 export function getYears(mpgs) {
     const years = [];
     mpgs.forEach(element =>{
-        years.push(year);
+        years.push(element.year);
     });
     return years;
 }
