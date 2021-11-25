@@ -19,21 +19,20 @@ export function findAvgMpg(mpgs){
 
 export function getYears(mpgs) {
     const years = [];
-    mpgs.forEach(element =>{
+    mpgs.forEach(function(element){
         years.push(element.year);
-    });
-    return years;
+    })
+    return getStatistics(years);
 }
 
 export function ratioHybrid(mpgs) {
     let total = mpgs.length;
     let hybridCount = 0;
-    mpgs.forEach(element =>{
-        if (element.hybrid = true){
+    mpgs.forEach(function(element) {
+        if(element.hybrid == true){
             hybridCount++;
         }
-
-    });
+    })
     return hybridCount/total;
 }
 
@@ -50,7 +49,7 @@ export function ratioHybrid(mpgs) {
  */
 export const allCarStats = {
     avgMpg: findAvgMpg(mpg_data),
-    allYearStats: getStatistics(getYears(mpg_data)),
+    allYearStats: getYears(mpg_data),
     ratioHybrids: ratioHybrid(mpg_data),
 };
 
@@ -120,8 +119,8 @@ export const allCarStats = {
 
 export function makes(mpg){
     let hybrid_cars = mpg.filter(car => car.hybrid == true);
-    let makes = Array();
-    let to_sort = Array();
+    let makes = [];
+    let to_sort = [];
     hybrid_cars.forEach(function(element){
         if(!makes.includes(element.make)){
             makes.push(element.make);
@@ -144,8 +143,8 @@ export function makes(mpg){
 }
 
 export function comp_mpg(mpg){
-    let unsorted_years = mpg.map(function(elem){
-        return elem.year;
+    let unsorted_years = mpg.map(function(element){
+        return element.year;
     });
     let years = Array.from(new Set(unsorted_years));
     let data = {};
