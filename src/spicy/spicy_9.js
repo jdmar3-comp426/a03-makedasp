@@ -18,9 +18,10 @@ export const repeat = (fn, n, ...params) => {
     let repeatArr = [];
     for(let x = 0; x < n; x++){
         for(let y = 0; y < params.length; y++){
-            repeatArr.push(fn(params[j]));
+            repeatArr.push(fn(params[y]));
         }
     }
+    return repeatArr;
 };
 
 
@@ -92,7 +93,7 @@ export const tenTimesFifty = () => {
  *    everyEven([1, 1, 0, 1, 1], x => x === 1)  <--  returns false
  */
 export const everyEven = (arr, test) => {
-    for(let x = 0; x < arr.length; i+=2){
+    for(let x = 0; x < arr.length; x+=2){
         if(!test(arr[x])){
             return false;
         }
@@ -121,7 +122,12 @@ export const everyEven = (arr, test) => {
  *    someEven([0, 0, 0, 0, 0], x => x === 0)  <--  returns true
  */
 export const someEven = (arr, test) => {
-
+    for(let x = 0; x < arr.length; x+=2){
+        if(test(arr[x])){
+            return true;
+        }
+    }
+    return false;
 };
 
 
@@ -147,7 +153,15 @@ export const someEven = (arr, test) => {
  *       -->  { pass: [1, 5, 31], fail: [90] }
  */
 export const filter = (arr, test) => {
-
+    let filtered = {fail: [], pass: []};
+    arr.forEach(function(data) {
+        if(test(data)){
+            filtered["pass"] = filtered["pass"].concat(data);
+        }else{
+            filtered["fail"] = filtered["fail"].concat(data);
+        }
+    })
+    return filtered;
 };
 
 
@@ -157,7 +171,14 @@ export const filter = (arr, test) => {
  *   odd numbers. Use the "everyEven" function in this function.
  */
 export const allEvensAreOdd = (arr) => {
-
+    let odd = function(num) {
+        if(num%2 == 0){
+            return false;
+        }else{
+            return true;
+        }
+    }
+    return everyEven(arr, odd);
 };
 
 
@@ -167,7 +188,14 @@ export const allEvensAreOdd = (arr) => {
  *   array is an odd number. Use the "someEven" function in this function.
  */
 export const anEvenIsOdd = (arr) => {
-
+    let odd = function (num) {
+        if(num%2==0){
+            return false;
+        }else{
+            return true;
+        }
+    }
+    return someEven(arr, odd);
 };
 
 
@@ -178,5 +206,10 @@ export const anEvenIsOdd = (arr) => {
  *   pass the test. You must use the filter function.
  */
 export const hasExactly = (arr, test, n) => {
-
+    let filtered = filter(arr, test);
+    let passed = filtered.pass.length;
+    if(passed == n){
+        return true;
+    }
+    return false;
 };
