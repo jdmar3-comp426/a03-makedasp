@@ -18,7 +18,17 @@ queries.
  *
  */
 export function searchHighPower(car_data, minHorsepower, minTorque) {
-
+    let data = car_data.filter(car => car.horsepower >= minHorsepower && car.torque >= minTorque);
+   let sorted_data = data.sort(function(a,b){
+    if(a.horsepower < b.horsepower){
+        return 1;
+    } else if(a.horsepower > b.horsepower){
+        return -1;
+    } else{
+        return 0;
+    }
+})
+return sorted_data;
 }
 
 
@@ -33,7 +43,17 @@ export function searchHighPower(car_data, minHorsepower, minTorque) {
  *
  */
 export function searchMpg(car_data, minCity, minHighway) {
-
+    let data = car_data.filter(car => car.highway_mpg >= minHighway && car.city_mpg >= minCity);
+    let sorted_data = data.sort(function(a,b){
+     if(a.highway_mpg < b.highway_mpg){
+         return 1;
+     } else if(a.highway_mpg > b.highway_mpg){
+         return -1;
+     } else{
+         return 0;
+     }
+ })
+ return sorted_data;
 }
 
 
@@ -46,7 +66,18 @@ export function searchMpg(car_data, minCity, minHighway) {
  * @returns {[]} array of cars
  */
 export function searchName(car_data, searchTerm) {
-
+    let term = searchTerm.toLowerCase();
+    let data = car_data.filter(car => car.id.toLowerCase().includes(term));
+    let sorted_data = data.sort(function(a,b){
+        if(a.id.toLowerCase().indexOf(term) < b.id.toLowerCase().indexOf(term)){
+            return -1;
+        } else if (a.id.toLowerCase().indexOf(term) < b.id.toLowerCase().indexOf(term)){
+            return 1;
+        } else{
+            return 0;
+        }
+    })
+    return sorted_data;
 }
 
 
@@ -59,5 +90,15 @@ export function searchName(car_data, searchTerm) {
  * @returns {[]} an array of car objects
  */
 export function searchByYear(car_data, years) {
-
+    let data = car_data.filter(car => years.includes(car.year));
+    let sorted_data = data.sort(function(a,b){
+        if(a.year < b.year){
+            return 1;
+        } else if(a.year > b.year){
+            return -1;
+        } else{
+            return 0;
+        }
+    })
+    return sorted_data;
 }

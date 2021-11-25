@@ -29,7 +29,7 @@ export function ratioHybrid(mpgs) {
     let total = mpgs.length;
     let hybridCount = 0;
     mpgs.forEach(element =>{
-        if (hybrid = true){
+        if (element.hybrid = true){
             hybridCount++;
         }
 
