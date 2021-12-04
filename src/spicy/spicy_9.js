@@ -153,7 +153,7 @@ export const someEven = (arr, test) => {
  *       -->  { pass: [1, 5, 31], fail: [90] }
  */
 export const filter = (arr, test) => {
-    let filtered = {fail: [], pass: []};
+    let filtered = {pass: [], fail: []};
     arr.forEach(function(data) {
         if(test(data)){
             filtered["pass"] = filtered["pass"].concat(data);
