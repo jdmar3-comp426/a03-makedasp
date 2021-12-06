@@ -1,3 +1,4 @@
+import { maxAndMin } from "../mild/mild_1.js";
 import {variance} from "./data/stats_helpers.js";
 
 /**
@@ -8,7 +9,11 @@ import {variance} from "./data/stats_helpers.js";
  * prototype functions. Very useful
  */
 export function getSum(array) {
-
+    let sum = 0;
+    for(let x = 0; x < array.length; x++){
+        sum += parseInt(array[x]);
+    }
+    return sum;
 }
 
 
@@ -22,7 +27,17 @@ export function getSum(array) {
  * console.log(getMedian(array)); // 4.5
  */
 export function getMedian(array) {
-
+    let median = 0;
+    array.sort(function(a,b){
+        return a-b;
+    })
+    let half = Math.floor(array.length / 2);
+    if(array.length % 2){
+        median = array[half];
+    } else{
+        median = (array[half] + array[half-1]) / 2.0;
+    }
+    return median;
 }
 
 /**
@@ -45,6 +60,16 @@ export function getMedian(array) {
  }
  */
 export function getStatistics(array) {
+    let minMax = maxAndMin(array);
+    let min = minMax.min;
+    let max = minMax.max;
+    let median = getMedian(array);
+    let sum = getSum(array);
+    let length = array.length;
+    let mean = sum / length;
+    let vrnce = variance(array, mean);
+    let stdDev = Math.sqrt(vrnce);
 
+    return {length: length, sum: sum, mean: mean, median: median, min: min, max: max, variance: vrnce, standard_deviation: stdDev};
 }
 
